@@ -50,14 +50,15 @@ func _on_url_opened(url_data: Dictionary) -> void:
 	deeplink_received.emit(DeeplinkUrl.new(url_data))
 
 
+# Only supported for Android platform
 func is_domain_associated(a_domain: String) -> bool:
 	var __result = true
 
 	if _plugin_singleton != null:
-		if _plugin_singleton.has_method("isDomainAssociated"):
-			__result = _plugin_singleton.isDomainAssociated(a_domain)
+		if _plugin_singleton.has_method("is_domain_associated"):
+			__result = _plugin_singleton.is_domain_associated(a_domain)
 		else:
-			printerr("%s.%s() method not implemented for current platform" % [PLUGIN_SINGLETON_NAME, "isDomainAssociated"])
+			printerr("%s.%s() method not implemented for current platform" % [PLUGIN_SINGLETON_NAME, "is_domain_associated"])
 	else:
 		printerr("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
 
@@ -67,9 +68,60 @@ func is_domain_associated(a_domain: String) -> bool:
 # Only supported for Android platform
 func navigate_to_open_by_default_settings() -> void:
 	if _plugin_singleton != null:
-		if _plugin_singleton.has_method("navigateToOpenByDefaultSettings"):
-			_plugin_singleton.navigateToOpenByDefaultSettings()
+		if _plugin_singleton.has_method("navigate_to_open_by_default_settings"):
+			_plugin_singleton.navigate_to_open_by_default_settings()
 		else:
-			printerr("%s.%s() method not implemented for current platform" % [PLUGIN_SINGLETON_NAME, "navigateToOpenByDefaultSettings"])
+			printerr("%s.%s() method not implemented for current platform" % [PLUGIN_SINGLETON_NAME, "navigate_to_open_by_default_settings"])
+	else:
+		printerr("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+
+
+func get_link_url() -> String:
+	var __result = ""
+
+	if _plugin_singleton != null:
+		__result = _plugin_singleton.get_url()
+	else:
+		printerr("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+
+	return __result
+
+
+func get_link_scheme() -> String:
+	var __result = ""
+
+	if _plugin_singleton != null:
+		__result = _plugin_singleton.get_scheme()
+	else:
+		printerr("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+
+	return __result
+
+
+func get_link_host() -> String:
+	var __result = ""
+
+	if _plugin_singleton != null:
+		__result = _plugin_singleton.get_host()
+	else:
+		printerr("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+
+	return __result
+
+
+func get_link_path() -> String:
+	var __result = ""
+
+	if _plugin_singleton != null:
+		__result = _plugin_singleton.get_path()
+	else:
+		printerr("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)
+
+	return __result
+
+
+func clear_data() -> void:
+	if _plugin_singleton != null:
+		_plugin_singleton.clear_data()
 	else:
 		printerr("%s plugin not initialized" % PLUGIN_SINGLETON_NAME)

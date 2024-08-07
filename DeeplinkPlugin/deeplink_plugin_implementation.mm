@@ -6,6 +6,7 @@
 
 #import "deeplink_plugin_implementation.h"
 #import "deeplink_service.h"
+#import "gdp_converter.h"
 
 
 String const URL_OPENED_SIGNAL = "url_opened";
@@ -15,6 +16,11 @@ DeeplinkPlugin* DeeplinkPlugin::instance = NULL;
 
 void DeeplinkPlugin::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("initialize"), &DeeplinkPlugin::initialize);
+	ClassDB::bind_method(D_METHOD("get_url"), &DeeplinkPlugin::get_url);
+	ClassDB::bind_method(D_METHOD("get_scheme"), &DeeplinkPlugin::get_scheme);
+	ClassDB::bind_method(D_METHOD("get_host"), &DeeplinkPlugin::get_host);
+	ClassDB::bind_method(D_METHOD("get_path"), &DeeplinkPlugin::get_path);
+	ClassDB::bind_method(D_METHOD("clear_data"), &DeeplinkPlugin::clear_data);
 
 	ADD_SIGNAL(MethodInfo(URL_OPENED_SIGNAL, PropertyInfo(Variant::DICTIONARY, "url_data"), PropertyInfo(Variant::DICTIONARY, "options_data")));
 }
@@ -29,6 +35,54 @@ Error DeeplinkPlugin::initialize() {
 
 	initialized = true;
 	return OK;
+}
+
+String DeeplinkPlugin::get_url() {
+	String result = "";
+
+	if (this->receivedUrl) {
+		result = [GDPConverter nsStringToGodotString:this->receivedUrl.absoluteString];
+	}
+
+	return result;
+}
+
+String DeeplinkPlugin::get_scheme() {
+	String result = "";
+
+	if (this->receivedUrl) {
+		result = [GDPConverter nsStringToGodotString:this->receivedUrl.scheme];
+	}
+
+	return result;
+}
+
+String DeeplinkPlugin::get_host() {
+	String result = "";
+
+	if (this->receivedUrl) {
+		result = [GDPConverter nsStringToGodotString:this->receivedUrl.host];
+	}
+
+	return result;
+}
+
+String DeeplinkPlugin::get_path() {
+	String result = "";
+
+	if (this->receivedUrl) {
+		result = [GDPConverter nsStringToGodotString:this->receivedUrl.path];
+	}
+
+	return result;
+}
+
+void DeeplinkPlugin::clear_data() {
+	this->receivedUrl = NULL;
+}
+
+void DeeplinkPlugin::set_received_url(NSURL* url) {
+	this->receivedUrl = url;
 }
 
 DeeplinkPlugin* DeeplinkPlugin::get_singleton() {

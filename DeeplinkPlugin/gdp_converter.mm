@@ -12,12 +12,47 @@
 
 // TO GODOT
 
-+ (Dictionary) nsDictionaryToGodotDictionary:(NSDictionary*) nsDictionary {
-	Dictionary dictionary;
++ (String) nsStringToGodotString:(NSString*) nsString {
+	return [nsString UTF8String];
+}
 
-	for (NSString* key in [nsDictionary allKeys]) {
-		NSString* value = [nsDictionary objectForKey:key];
-		dictionary[key.UTF8String] = (value) ? [value UTF8String] : "";
++ (Dictionary) nsDictionaryToGodotDictionary:(NSDictionary*) nsDictionary {
+	Dictionary dictionary = Dictionary();
+
+	for (NSObject* keyObject in [nsDictionary allKeys]) {
+		if (keyObject && [keyObject isKindOfClass:[NSString class]]) {
+			NSString* key = (NSString*) keyObject;
+
+			NSObject* valueObject = [nsDictionary objectForKey:key];
+			if (valueObject) {
+				if ([valueObject isKindOfClass:[NSString class]]) {
+					NSString* value = (NSString*) valueObject;
+					dictionary[[key UTF8String]] = (value) ? [value UTF8String] : "";
+				}
+				else if ([valueObject isKindOfClass:[NSNumber class]]) {
+					NSNumber* value = (NSNumber*) valueObject;
+					if (strcmp([value objCType], @encode(BOOL)) == 0) {
+						dictionary[[key UTF8String]] = (int) [value boolValue];
+					} else if (strcmp([value objCType], @encode(char)) == 0) {
+						dictionary[[key UTF8String]] = (int) [value charValue];
+					} else if (strcmp([value objCType], @encode(int)) == 0) {
+						dictionary[[key UTF8String]] = [value intValue];
+					} else if (strcmp([value objCType], @encode(unsigned int)) == 0) {
+						dictionary[[key UTF8String]] = (int) [value unsignedIntValue];
+					} else if (strcmp([value objCType], @encode(long long)) == 0) {
+						dictionary[[key UTF8String]] = (int) [value longValue];
+					} else if (strcmp([value objCType], @encode(float)) == 0) {
+						dictionary[[key UTF8String]] = [value floatValue];
+					} else if (strcmp([value objCType], @encode(double)) == 0) {
+						dictionary[[key UTF8String]] = (float) [value doubleValue];
+					}
+				}
+				else if ([valueObject isKindOfClass:[NSDictionary class]]) {
+					NSDictionary* value = (NSDictionary*) valueObject;
+					dictionary[[key UTF8String]] = [GDPConverter nsDictionaryToGodotDictionary:value];
+				}
+			}
+		}
 	}
 
 	return dictionary;

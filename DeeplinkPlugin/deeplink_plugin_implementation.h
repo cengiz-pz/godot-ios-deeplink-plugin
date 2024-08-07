@@ -16,15 +16,28 @@ class DeeplinkPlugin : public Object {
 	GDCLASS(DeeplinkPlugin, Object);
 
 private:
+	static DeeplinkPlugin* instance;
 
 	bool initialized;
-	static DeeplinkPlugin* instance;
+	NSURL* receivedUrl;
 
 	static void _bind_methods();
 	
 public:
 	
 	Error initialize();
+
+	String get_url();
+
+	String get_scheme();
+
+	String get_host();
+
+	String get_path();
+
+	void clear_data();
+
+	void set_received_url(NSURL* url);
 
 	static DeeplinkPlugin* get_singleton();
 	
