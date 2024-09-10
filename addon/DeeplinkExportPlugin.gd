@@ -8,7 +8,6 @@ extends EditorPlugin
 const PLUGIN_NODE_TYPE_NAME: String = "Deeplink"
 const PLUGIN_PARENT_NODE_TYPE: String = "Node"
 const PLUGIN_NAME: String = "DeeplinkPlugin"
-const PLUGIN_VERSION: String = "1.0"
 
 const ENTITLEMENTS_FILE_HEADER: String = """<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

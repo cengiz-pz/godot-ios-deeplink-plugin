@@ -20,7 +20,7 @@ const FRAGMENT_PROPERTY: String = "fragment"
 var _data: Dictionary
 
 
-func _init(a_data: Dictionary):
+func _init(a_data: Dictionary = {}):
 	_data = {
 		SCHEME_PROPERTY: a_data[SCHEME_PROPERTY] if a_data.has(SCHEME_PROPERTY) else "",
 		USER_PROPERTY: a_data[USER_PROPERTY] if a_data.has(USER_PROPERTY) else "",
