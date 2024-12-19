@@ -116,11 +116,20 @@ ___
 
 ___
 
+## ![](addon/icon.png?raw=true) Refreshing addon submodule
+
+- Remove `deeplink/addon_template` directory
+- Run `git submodule update --remote --merge`
+
+<br/>
+
+___
+
 ## ![](addon/icon.png?raw=true) Libraries
 
 Library archives will be created in the `bin/release` directory.
 
-<br/><br/><br/>
+<br/><br/>
 
 ---
 # ![](addon/icon.png?raw=true) All Plugins

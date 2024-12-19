@@ -9,7 +9,7 @@
 #import "gdp_converter.h"
 
 
-String const URL_OPENED_SIGNAL = "url_opened";
+String const DEEPLINK_RECEIVED_SIGNAL = "deeplink_received";
 
 DeeplinkPlugin* DeeplinkPlugin::instance = NULL;
 
@@ -22,7 +22,7 @@ void DeeplinkPlugin::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_path"), &DeeplinkPlugin::get_path);
 	ClassDB::bind_method(D_METHOD("clear_data"), &DeeplinkPlugin::clear_data);
 
-	ADD_SIGNAL(MethodInfo(URL_OPENED_SIGNAL, PropertyInfo(Variant::DICTIONARY, "url_data"), PropertyInfo(Variant::DICTIONARY, "options_data")));
+	ADD_SIGNAL(MethodInfo(DEEPLINK_RECEIVED_SIGNAL, PropertyInfo(Variant::DICTIONARY, "url_data"), PropertyInfo(Variant::DICTIONARY, "options_data")));
 }
 
 Error DeeplinkPlugin::initialize() {
