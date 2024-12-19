@@ -12,7 +12,8 @@
 - (BOOL) application:(UIApplication*) app openURL:(NSURL*) url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id>*) options {
 
 	DeeplinkPlugin::get_singleton()->set_received_url(url);
-	DeeplinkPlugin::get_singleton()->emit_signal(DEEPLINK_RECEIVED_SIGNAL, [GDPConverter nsUrlToGodotDictionary:url]);
+	DeeplinkPlugin::get_singleton()->emit_signal(URL_OPENED_SIGNAL, [GDPConverter nsUrlToGodotDictionary:url],
+				[GDPConverter nsDictionaryToGodotDictionary:options]);
 
 	return YES;
 }
@@ -21,7 +22,7 @@
 	if ([userActivity.activityType isEqualToString: NSUserActivityTypeBrowsingWeb]) {
         NSURL* url = userActivity.webpageURL;
 		DeeplinkPlugin::get_singleton()->set_received_url(url);
-		DeeplinkPlugin::get_singleton()->emit_signal(DEEPLINK_RECEIVED_SIGNAL, [GDPConverter nsUrlToGodotDictionary:url]);
+		DeeplinkPlugin::get_singleton()->emit_signal(URL_OPENED_SIGNAL, [GDPConverter nsUrlToGodotDictionary:url], Dictionary());
     }
 
     return YES;
