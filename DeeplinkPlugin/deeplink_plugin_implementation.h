@@ -9,7 +9,7 @@
 #include "core/object/class_db.h"
 
 
-extern String const URL_OPENED_SIGNAL;
+extern String const DEEPLINK_RECEIVED_SIGNAL;
 
 
 class DeeplinkPlugin : public Object {
