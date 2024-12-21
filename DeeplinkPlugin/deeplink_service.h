@@ -9,9 +9,15 @@
 #import "app_delegate.h"
 #import "godot_app_delegate.h"
 
-@interface DeeplinkService : ApplicationDelegateService 
+@interface DeeplinkService : ApplicationDelegateService
+
++ (instancetype) shared;
 
 - (BOOL) application:(UIApplication*) app openURL:(NSURL*) url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id>*) options;
+
+- (BOOL) application:(UIApplication*) app continueUserActivity:(NSUserActivity*) userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>>* restorableObjects)) restorationHandler;
+
+- (BOOL) application:(UIApplication*) app didFinishLaunchingWithOptions:(NSDictionary<NSString*,id> *) launchOptions;
 
 @end
 

@@ -19,11 +19,11 @@ private:
 	static DeeplinkPlugin* instance;
 
 	bool initialized;
-	NSURL* receivedUrl;
 
 	static void _bind_methods();
 	
 public:
+	static NSURL* receivedUrl;
 	
 	Error initialize();
 
@@ -37,7 +37,7 @@ public:
 
 	void clear_data();
 
-	void set_received_url(NSURL* url);
+	void navigate_to_open_by_default_settings();
 
 	static DeeplinkPlugin* get_singleton();
 	
