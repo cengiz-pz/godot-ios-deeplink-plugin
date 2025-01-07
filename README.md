@@ -116,9 +116,17 @@ ___
 
 ___
 
-## ![](addon/icon.png?raw=true) Refreshing addon submodule
+## ![](addon/icon.png?raw=true) Git addon submodule
 
-- Remove `deeplink/addon_template` directory
+
+### ![](addon/icon.png?raw=true) Creating
+
+- `git submodule add -b main --force --name addon https://github.com/cengiz-pz/godot-deeplink-addon.git addon`
+
+
+### ![](addon/icon.png?raw=true) Updating
+
+- Remove `addon` directory
 - Run `git submodule update --remote --merge`
 
 <br/>
