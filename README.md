@@ -83,6 +83,8 @@ Developed by [Cengiz](https://github.com/cengiz-pz)
 
 Original repository: [Godot iOS Deeplink Plugin](https://github.com/cengiz-pz/godot-ios-deeplink-plugin)
 
+Based on: [Godot iOS Plugin Template](https://github.com/cengiz-pz/godot-ios-plugin-template)
+
 <br/><br/><br/>
 
 
