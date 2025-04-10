@@ -1,3 +1,6 @@
+<p align="center">
+  <img width="256" height="256" src="demo/deeplink.png">
+</p>
 
 ---
 # ![](addon/icon.png?raw=true) Deeplink Plugin
@@ -81,9 +84,9 @@ Refer to Godot's [Troubleshooting Guide](https://docs.godotengine.org/en/stable/
 # ![](addon/icon.png?raw=true) Credits
 Developed by [Cengiz](https://github.com/cengiz-pz)
 
-Original repository: [Godot iOS Deeplink Plugin](https://github.com/cengiz-pz/godot-ios-deeplink-plugin)
-
 Based on: [Godot iOS Plugin Template](https://github.com/cengiz-pz/godot-ios-plugin-template)
+
+Original repository: [Godot iOS Deeplink Plugin](https://github.com/cengiz-pz/godot-ios-deeplink-plugin)
 
 <br/><br/><br/>
 
