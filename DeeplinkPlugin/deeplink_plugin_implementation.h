@@ -37,6 +37,8 @@ public:
 
 	void clear_data();
 
+	bool is_domain_associated(String domain);
+
 	void navigate_to_open_by_default_settings();
 
 	static DeeplinkPlugin* get_singleton();

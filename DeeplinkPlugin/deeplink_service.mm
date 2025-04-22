@@ -9,10 +9,10 @@
 
 struct DeeplinkServiceInitializer {
 	DeeplinkServiceInitializer() {
-#if VERSION_MAJOR == 4 && VERSION_MINOR >= 4
-		[GodotApplicationDelegate addService:[DeeplinkService shared]];
-#else
+#if VERSION_MAJOR == 4 && VERSION_MINOR < 4
 		[GodotApplicalitionDelegate addService:[DeeplinkService shared]];
+#else
+		[GodotApplicationDelegate addService:[DeeplinkService shared]];
 #endif
 	}
 };
