@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbngbohjs4thb"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_6m677"]
-[ext_resource type="Script" path="res://addons/DeeplinkPlugin/Deeplink.gd" id="2_4jmv3"]
+[ext_resource type="Script" uid="uid://de1o8e8pcyesq" path="res://Main.gd" id="1_6m677"]
+[ext_resource type="Script" uid="uid://bpre4iv4kc3dd" path="res://addons/DeeplinkPlugin/Deeplink.gd" id="2_4jmv3"]
 [ext_resource type="Texture2D" uid="uid://dhxhq06bpbgye" path="res://deeplink.png" id="2_ym6q2"]
 
 [node name="Main" type="Node"]
@@ -44,11 +44,11 @@ placeholder_text = "Domain"
 
 [node name="IsAssociatedButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Check Domain Association"
 
 [node name="NavigateButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "Navigate to Settings"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer/VBoxContainer"]

@@ -13,15 +13,11 @@
 DeeplinkPlugin *plugin;
 
 void deeplink_plugin_init() {
-	NSLog(@"init plugin");
-
 	plugin = memnew(DeeplinkPlugin);
 	Engine::get_singleton()->add_singleton(Engine::Singleton("DeeplinkPlugin", plugin));
 }
 
 void deeplink_plugin_deinit() {
-	NSLog(@"deinit plugin");
-	
 	if (plugin) {
 	   memdelete(plugin);
    }

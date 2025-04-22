@@ -57,6 +57,7 @@ Steps:
 	- `get_link_path()` -> path for the deeplink (the part that comes after host)
 - additional methods:
 	- `is_domain_associated(a_domain: String)` -> returns true if your application is correctly associated with the given domain on the tested device
+		- ! this method is not supported on iOS !
 
 ## ![](addon/icon.png?raw=true) Testing
 `adb shell` command can be used to simulate app links as follows:
@@ -64,7 +65,7 @@ Steps:
 
 ## ![](addon/icon.png?raw=true) Running demo
 - After exporting demo application to an Xcode project, Xcode will require an account to be added.
-    - Add an account via Xcode->Settings...->Accounts
+	- Add an account via Xcode->Settings...->Accounts
 
 ## ![](addon/icon.png?raw=true) Troubleshooting
 
@@ -115,7 +116,17 @@ ___
 - Run `./script/build.sh -A <godot version>` initially to run a full build
 - Run `./script/build.sh -cgA <godot version>` to clean, redownload Godot, and rebuild
 - Run `./script/build.sh -ca` to clean and build without redownloading Godot
+- Run `./script/build.sh -cb -z4.0` to clean and build plugin without redownloading Godot and package in a zip archive as version 4.0
 - Run `./script/build.sh -h` for more information on the build script
+
+<br/>
+
+___
+
+## ![](addon/icon.png?raw=true) Install Script
+
+- Run `./script/install.sh -t <target directory> -z <path to zip file>` install plugin to a Godot project.
+- Example `./script/install.sh -t demo -z bin/release/DeeplinkPlugin-v4.0.zip` to install to demo app.
 
 <br/>
 
