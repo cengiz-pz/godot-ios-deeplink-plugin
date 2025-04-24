@@ -50,6 +50,7 @@ Steps:
 		- leave `path prefix` empty to process all paths in `host`
 - register a listener for the `deeplink_received` signal
 	- process `url`, `scheme`, `host`, and `path` data from the signal
+- invoke the `initialize()` method at startup
 - alternatively, use the following methods to get most recent deeplink data:
 	- `get_link_url()` -> full URL for the deeplink
 	- `get_link_scheme()` -> scheme for the deeplink (ie. 'https')
@@ -59,9 +60,33 @@ Steps:
 	- `is_domain_associated(a_domain: String)` -> returns true if your application is correctly associated with the given domain on the tested device
 		- ! this method is not supported on iOS !
 
-## ![](addon/icon.png?raw=true) Testing
-`adb shell` command can be used to simulate app links as follows:
-- `$> adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "https://www.example.com/mydata/path"`
+## ![](addon/icon.png?raw=true) iOS Export
+- Make sure that the scene that contains your Deeplink nodes is selected in the Godot Editor when building and exporting for iOS
+	- Close other scenes to make sure
+	- _Deeplink nodes will be searched in the scene that is currently open in the Godot Editor_
+Android export requires several configuration settings.
+
+### ![](addon/icon.png?raw=true) File-based Export Configuration
+In order to enable file-based export configuration, an `export.cfg` file should be placed in the `addons/DeeplinkPlugin` directory. The `export.cfg` configuration file may contain multiple deeplink configurations. The `scheme` and `host` properties are mandatory for each deeplink configuration.
+
+The following is a sample `export.cfg` file:
+
+```
+[Deeplink1]
+scheme = "https"
+host = "www.example.com"
+
+[Deeplink2]
+scheme = "https"
+host = "www.example2.com"
+```
+
+### ![](addon/icon.png?raw=true) Node-based Export Configuration
+If `export.cfg` file is not found or file-based configuration fails, then the plugin will attempt to load node-based configuration.
+
+During iOS export, the plugin searches for `Deeplink` nodes in the scene that is open in the Godot Editor.  If none found, then the plugin searches for `Deeplink` nodes in the project's main scene.  Therefore; 
+- Make sure that the scene that contains the `Deeplink` node(s) is selected in the Godot Editor when building and exporting for Android, or
+- Make sure that your Godot project's main scene contains an `Deeplink` node(s).
 
 ## ![](addon/icon.png?raw=true) Running demo
 - After exporting demo application to an Xcode project, Xcode will require an account to be added.
